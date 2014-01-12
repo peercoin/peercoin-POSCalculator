@@ -17,6 +17,11 @@ function run() {
 //   alert("calculating the Proof Of Stake reward");
     var coinValue = document.getElementById('NumberOfCoinsStart').value
 	var Days = document.getElementById('AgeOfTransaction').value
+	//*Max Coin days 90*//
+	if (Days > 91)
+	{
+	Days = 91;
+	}
 //	alert("Number Of Coins Start = " + coinValue);
 //	alert("Age of transaction = " + Days);
 	var customPOSReward = calculateReward(Days, coinValue);
@@ -56,6 +61,17 @@ function calculateReward(days, coins){
 </head>
 <body>
 <h1>Peercoin Proof Of Stake (POS) calculator</h1>
+
+<p>
+<span>Currently it is very early days... so only basic function but you can:</span>
+<br /><br />
+<span>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout</span
+><br /><br />
+<span>The first line shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</span>
+<br /><br />
+<span>The second line then shows you the POS reward for having not moved the coins + the POS earn't from before (so your compound interest) on you initial holding.</span><br /><br /><span>More features to come</span>
+</p>
+
  <form type="post">
        Number Of Coins Start <input type ="textbox" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"><br>
         Age of transaction (days) <input type="textbox" id="AgeOfTransaction" value="31"><br>
