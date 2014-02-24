@@ -78,8 +78,8 @@ function calculateReward(days, coins){
 </ul>
 
  
-       Number Of Coins Start <input type ="textbox" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"><br>
-        Age of transaction (days) <input type="textbox" id="AgeOfTransaction" value="31"><br>
+       Number Of Coins Start <input type ="number" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"><br>
+        Age of transaction (days) <input type="number" id="AgeOfTransaction" value="31"><br>
    <input type="button" onclick="run()" value="Calculate POS reward">
 
  <table>
@@ -153,7 +153,7 @@ function calculateReward(days, coins){
   </td>
  </tr>
  </table>
-</br>
+<br>
 <div id="footer">
 <a href="http://donate.peercointalk.org">Donate to Peercointalk projects</a><br>
 <a href="https://github.com/FuzzyBearBTC/peercoin-POSCalculator">Github Source Code</a>
