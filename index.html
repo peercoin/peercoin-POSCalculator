@@ -68,18 +68,19 @@ function calculateReward(days, coins){
 
 <p>
 <span>Currently it is very early days... so only basic function but you can:</span>
-<br /><br />
-<span>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout</span
-><br /><br />
-<span>The first line shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</span>
-<br /><br />
-<span>The second line then shows you the POS reward for having not moved the coins + the POS earn't from before (so your compound interest) on you initial holding.</span><br /><br /><span>More features to come</span>
 </p>
+<ul>
+<li>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout.</li
+>
+<li>The first line shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</li>
 
- <form type="post">
+<li>The second line then shows you the POS reward for having not moved the coins + the POS earn't from before (so your compound interest) on you initial holding.</li><li>More features to come</li>
+</ul>
+
+ 
        Number Of Coins Start <input type ="textbox" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"><br>
         Age of transaction (days) <input type="textbox" id="AgeOfTransaction" value="31"><br>
-		<input type="button" onclick="run()" value="Calculate POS reward"></input>
+   <input type="button" onclick="run()" value="Calculate POS reward">
 
  <table>
  <tr>
@@ -152,7 +153,6 @@ function calculateReward(days, coins){
   </td>
  </tr>
  </table>
-</form>
 </br>
 <div id="footer">
 <a href="http://donate.peercointalk.org">Donate to Peercointalk projects</a><br>
