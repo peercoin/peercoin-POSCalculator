@@ -1,173 +1,218 @@
 <!doctype html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<title>Peercoin - POS calculator</title>
- <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<script type="text/javascript">
+  <head>
+    <title>Peercoin - POS calculator</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style type="text/css">
+      html { height: 100%; margin: 0; }
+      body { background-color: #C0C0C0; height: 100%; margin: 0; }
+      div#wrap { height: auto !important; margin: 0; min-height: 100% }
+      div#content { background-color: #FFFFFF; border: 1px solid #000000; height: 100%; margin: 3px auto 0; padding: 5px 10px; width: 768px; }
+      h1 { font-size: 22px; text-align: center; }
+      table.result { border: 1px solid #000000; border-collapse: collapse; }
+      table.result th { text-align: center; border: 1px solid #000000; padding: 5px; }
+      table.result td { text-align: right; border: 1px solid #000000; padding: 5px; }
+    </style>
+    <link rel="shortcut icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A7PT4Mszm8pmw3e3bltjr+ofZ6vqM4O3bq+jxmebz9zL///8A////AP///wD///8A////AP///wD6/P0Jy+fzmqjc8P2O0+n9edXp/XDf7/1s6fX9Z+z3/WDq9v1T5vP9oefwm/r7/Qn///8A////AP///wD6+/0Jwef0wZLS6f1esdP9SKbD/0Kmv/8/r8b/P8bc/0Hd7/9F6vf/WfL7/V/u+f2a6PDB+vv9Cf///wD///8A0Ov2mYfQ6v1FmMX9O5TC/zS51f890N//SfX+/y2hvv81wt//PtHo/0/h8f9q7/n9kvH5/cnt9Jr///8A8PX5MMTn8v1Dmcn9MY7D/yiJvv8qpMv/MrvY/zja7f8plLX/Nq3S/0m92/9czeX/cNzt/5Hr9f3O9Pn98fb5MNPq8paDvdr9KYrE/yKIw/8ehsH/HprN/x+gzv8ltNv/LYux/0Sgyv9XsNP/asDc/37O5P+T3Oz/0fL4/d/w9pe/5e/XQ5nJ/R6GxP8dhsX/HofE/yGg0v8gnMr/H6TW/zKEqv9IlLb/VZW0/3az0f+Kxd7/h8rh/4bT5/2S2erXmdzs+CyIvf0ehsL/H4fE/yaKxv8srdv/J6vU/zq65P9XveP/e8nm/5bW6/9pn7f/ZqvO/0+nzv9BrNL9Q7jb+E/K5fgjg7b9JYe//y2Lwv83j8X/dr/c/2LB3P9q1PL/S6yg/wZ+KP9UnJT/QarM/y6Dr/8kjsP/JZLF/Tus1/iP3O3XNo+6/TKJvP87jr//RZLC/4rD2P+w0dv/wuz2/x+UU/8EkjP/F4tn/y2nuP8dgLH/H43G/yKVy/1XttzX2u/2lH+20P08ibf/RY68/0+Tv/+BxNv/o9Hd/8zs8v8ro2H/J6lp/xWXXf87web/IIO3/yCOyv8iodb9lNLqlvH2+i/k8fb9U4my/U+MuP9SkLv/nczf/5HW5f9l0uj/PKWX/2S3qf+v3+n/a7XT/x+Myv8gk8/9MLnl/eTy+DD///8A7fP4mMzZ5P9Og6//RIm2/4+71P+Yz+L/Trza/ze11f9at9T/XanM/yONxP8jjsj9Lrfk/Znb8Zj///8A////APv8/Qfu9fi/v9Ph/UaBrP03hLT/MIe3/ymJuv8li73/JIy//ySNwf8zkL/9lszi/aPf8cD6/P0H////AP///wD///8A+/z9B+vz+Jng7vT9jbPM/U6Otf01gK39K4Gv/SyMt/1HpMX9pNnm/eHu9Jn7/P0J////AP///wD///8A////AP///wD///8A8fb6MOnz+JfP7fbZkt3u+FfN5/hkz+fZpd7tl+nz+DH///8A////AP///wD///8A+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==" />
+    <script type="text/javascript">
+      function is_int(value)
+      {
+        if((parseFloat(value) == parseInt(value)) && !isNaN(value))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
 
-function is_int(value){ 
-  if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
-      return true;
-  } else { 
-      return false;
-  } 
-}
+      function toFixed(value, precision)
+      {
+        var precision = precision || 0,
+          neg = value < 0,
+          power = Math.pow(10, precision),
+          value = Math.round(value * power),
+          integral = String((neg ? Math.ceil : Math.floor)(value / power)),
+          fraction = String((neg ? -value : value) % power),
+          padding = new Array(Math.max(precision - fraction.length, 0) + 1).join('0');
 
+        return precision ? integral + '.' +  padding + fraction : integral;
+      }
 
-</script>
-<script type="text/javascript">
-function run() {
-//   alert("calculating the Proof Of Stake reward");
-    var coinValue = document.getElementById('NumberOfCoinsStart').value
-	var Days = document.getElementById('AgeOfTransaction').value
-	//*Max Coin days 90*//
-	if (Days > 91)
-	{
-	Days = 91;
-	}
-//	alert("Number Of Coins Start = " + coinValue);
-//	alert("Age of transaction = " + Days);
-	var customPOSReward = calculateReward(Days, coinValue);
-	var minPOSReward = calculateReward(31, coinValue);
-	var maxPOSReward = calculateReward(91, coinValue);
-	var customDayTotal = parseFloat(customPOSReward)+parseFloat(coinValue);
-	var maxDayTotal = parseFloat(maxPOSReward)+parseFloat(coinValue);
-	var minDayTotal = parseFloat(minPOSReward)+parseFloat(coinValue);
-	//alert("Proof Of Stake Reward = " + customPOSReward);
-	document.getElementById('customDay').innerHTML = customPOSReward + ' PPC';
-	document.getElementById('30Day').innerHTML = minPOSReward + ' PPC';
-	document.getElementById('90Day').innerHTML = maxPOSReward + ' PPC';
-	document.getElementById('customDayTotal').innerHTML = customDayTotal;
-	document.getElementById('30DayTotal').innerHTML = minDayTotal;
-	document.getElementById('90DayTotal').innerHTML = maxDayTotal;
-	
-	////second compound interest ////
-	var customPOSReward2 = calculateReward(Days, customDayTotal);
-	var minPOSReward2 = calculateReward(31, minDayTotal);
-	var maxPOSReward2 = calculateReward(91, maxDayTotal);
-	var customDayTotal2 = parseFloat(customPOSReward2)+parseFloat(customDayTotal);
-	var minDayTotal2 = parseFloat(minPOSReward2)+parseFloat(minDayTotal);
-	var maxDayTotal2 = parseFloat(maxPOSReward2)+parseFloat(maxDayTotal);
-	//alert("Proof Of Stake Reward = " + customPOSReward2);
-	document.getElementById('customDay2').innerHTML = customPOSReward2 + ' PPC';
-	document.getElementById('30Day2').innerHTML = minPOSReward2 + ' PPC';
-	document.getElementById('90Day2').innerHTML = maxPOSReward2 + ' PPC';
-	document.getElementById('customDayTotal2').innerHTML = customDayTotal2;
-	document.getElementById('30DayTotal2').innerHTML = minDayTotal2;
-	document.getElementById('90DayTotal2').innerHTML = maxDayTotal2;
-}
-function calculateReward(days, coins){
-	return (days<31?0:((days*coins)*33/((365*33+8))*0.01));
-}
+      function calculateProbStake(days, coins, difficulty)
+      {
+        var maxTarget = Math.pow(2, 224);
+        var target = maxTarget / difficulty;
+        var prob = (days < 31) ? 0 : ((target * coins * days) / Math.pow(2, 256));
+        return prob;
+      }
 
-</script>
-</head>
-<body>
-<h1>Peercoin Proof Of Stake (POS) calculator</h1>
+      function calculateProbNextBlock(days, coins, difficulty)
+      {
+        var prob = calculateProbStake(days, coins, difficulty);
+        var res = 1 - Math.pow(1 - prob, 60 * 10);
+        return res;
+      }
 
-<p>
-<span>Currently it is very early days... so only basic function but you can:</span>
-</p>
-<ul>
-<li>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout.</li
->
-<li>The first line shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</li>
+      function calculateProbBlockToday(days, coins, difficulty)
+      {
+        var prob = calculateProbStake(days, coins, difficulty);
+        var res = 1 - Math.pow(1 - prob, 60 * 10 * 6 * 24);
+        return res;
+      }
 
-<li>The second line then shows you the POS reward for having not moved the coins + the POS earned from before (so your compound interest) on you initial holding.</li><li>More features to come</li>
-</ul>
+      function run() {
+        //   alert("calculating the Proof Of Stake reward");
+        var coinValue = document.getElementById('NumberOfCoinsStart').value;
+        var Days = document.getElementById('AgeOfTransaction').value;
+        var difficulty = document.getElementById('POSDifficulty').value;
+        //*Max Coin days 90*//
+        if (Days > 91)
+        {
+          Days = 91;
+        }
+        //	alert("Number Of Coins Start = " + coinValue);
+        //	alert("Age of transaction = " + Days);
+        document.getElementById('probNextBlock').innerHTML = toFixed(calculateProbNextBlock(Days, coinValue, difficulty) * 100, 6) + '%';
+        document.getElementById('probBlockToday').innerHTML = toFixed(calculateProbBlockToday(Days, coinValue, difficulty) * 100, 6) + '%';
 
- 
-       Number Of Coins Start <input type ="number" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"><br>
-        Age of transaction (days) <input type="number" id="AgeOfTransaction" value="31"><br>
-   <input type="button" onclick="run()" value="Calculate POS reward">
+        var customPOSReward = calculateReward(Days, coinValue);
+        var minPOSReward = calculateReward(31, coinValue);
+        var maxPOSReward = calculateReward(91, coinValue);
+        var customDayTotal = parseFloat(customPOSReward)+parseFloat(coinValue);
+        var maxDayTotal = parseFloat(maxPOSReward)+parseFloat(coinValue);
+        var minDayTotal = parseFloat(minPOSReward)+parseFloat(coinValue);
+        //alert("Proof Of Stake Reward = " + customPOSReward);
+        document.getElementById('customDay').innerHTML = toFixed(customPOSReward, 6) + ' PPC';
+        document.getElementById('30Day').innerHTML = toFixed(minPOSReward, 6) + ' PPC';
+        document.getElementById('90Day').innerHTML = toFixed(maxPOSReward, 6) + ' PPC';
+        document.getElementById('customDayTotal').innerHTML = toFixed(customDayTotal, 6) + ' PPC';
+        document.getElementById('30DayTotal').innerHTML = toFixed(minDayTotal, 6) + ' PPC';
+        document.getElementById('90DayTotal').innerHTML = toFixed(maxDayTotal, 6) + ' PPC';
+        
+        ////second compound interest ////
+        var customPOSReward2 = calculateReward(Days, customDayTotal);
+        var minPOSReward2 = calculateReward(31, minDayTotal);
+        var maxPOSReward2 = calculateReward(91, maxDayTotal);
+        var customDayTotal2 = parseFloat(customPOSReward2)+parseFloat(customDayTotal);
+        var minDayTotal2 = parseFloat(minPOSReward2)+parseFloat(minDayTotal);
+        var maxDayTotal2 = parseFloat(maxPOSReward2)+parseFloat(maxDayTotal);
+        //alert("Proof Of Stake Reward = " + customPOSReward2);
+        document.getElementById('customDay2').innerHTML = toFixed(customPOSReward2, 6) + ' PPC';
+        document.getElementById('30Day2').innerHTML = toFixed(minPOSReward2, 6) + ' PPC';
+        document.getElementById('90Day2').innerHTML = toFixed(maxPOSReward2, 6) + ' PPC';
+        document.getElementById('customDayTotal2').innerHTML = toFixed(customDayTotal2, 6) + ' PPC';
+        document.getElementById('30DayTotal2').innerHTML = toFixed(minDayTotal2, 6) + ' PPC';
+        document.getElementById('90DayTotal2').innerHTML = toFixed(maxDayTotal2, 6) + ' PPC';
+      }
 
- <table>
- <tr>
- <th style="width:50px">
- <label >Compound Iteration</label>
-  </th>
- <th style="width:200px">
- <label >POS reward </label>
-  </th>
-  <th style="width:200px">
- <label >30 day POS reward </label>
-  </th>
-  <th style="width:200px">
- <label >90 day POS reward </label>
-  </th>
-  <th style="width:200px">
- <label >custom day PPC total </label>
-  </th>
-  <th style="width:200px">
- <label >30 day PPC total </label>
-  </th>
-  <th style="width:200px">
- <label >90 day PPC total </label>
-  </th>
- </tr>
- <tr>
- <td>
- 1
-  </td>
-  <td>
- <label id="customDay"> </label>
-  </td>
-  <td>
- <label id="30Day"> </label>
-  </td>
-  <td>
- <label id="90Day"> </label>
-  </td>
-   <td>
- <label id="customDayTotal"> </label>
-  </td>
-  <td>
- <label id="30DayTotal"> </label>
-  </td>
-  <td>
- <label id="90DayTotal"> </label>
-  </td>
- </tr>
- <tr>
- <td>
- 2
-  </td>
- <td>
- <label id="customDay2"> </label>
-  </td>
-  <td>
- <label id="30Day2"> </label>
-  </td>
-  <td>
- <label id="90Day2"> </label>
-  </td>
-  <td>
- <label id="customDayTotal2"> </label>
-  </td>
-  <td>
- <label id="30DayTotal2"> </label>
-  </td>
-  <td>
- <label id="90DayTotal2"> </label>
-  </td>
- </tr>
- </table>
-<br>
-<div id="footer">
-<a href="http://peer4commit.com/projects/5" target="_blank">Donate to the development of this project</a><br>
-<a href="http://donate.peercointalk.org" target="_blank">Donate to Peercointalk projects</a><br>
-<a href="https://github.com/FuzzyBearBTC/peercoin-POSCalculator" target="_blank">Github Source Code</a>
-</div>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      function calculateReward(days, coins){
+        return (days<31?0:((days*coins)*33/((365*33+8))*0.01));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="content">
+        <h1>Peercoin Proof Of Stake (POS) calculator</h1>
+        <p>
+          <span>Currently it is very early days... so only basic function but you can:</span>
+        </p>
+        <ul>
+          <li>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout.</li>
+          <li>The first column shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</li>
+          <li>The second column then shows you the POS reward for having not moved the coins + the POS earned from before (so your compound interest) on you initial holding.</li>
+          <li>More features to come</li>
+        </ul>
+        <br />
+        <table>
+          <tr>
+            <td>Number Of Coins Start</td>
+            <td><input type ="number" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"></td>
+          </tr>
+          <tr>
+            <td>Age of transaction (days)</td>
+            <td><input type="number" id="AgeOfTransaction" value="31"></td>
+          </tr>
+          <tr>
+            <td>POS difficulty</td>
+            <td><input type="number" id="POSDifficulty" value="10"></td>
+          </tr>
+          <tr>
+            <td><input type="button" onclick="run()" value="Calculate POS reward"></td>
+          </tr>
+        </table>
+        <br />
+        <table class="result">
+          <tr>
+            <th />
+            <th>Probability</th>
+          </tr>
+          <tr>
+            <td>Generation of the next POS block</td>
+            <td><label id="probNextBlock"></label></td>
+          </tr>
+          <tr>
+            <td>Generation of a POS block in the next 24h</td>
+            <td><label id="probBlockToday"></label></td>
+          </tr>
+        </table>
+        <br />
+        <table class="result">
+          <tr>
+            <th />
+            <th><label>Compound Iteration 1</label></th>
+            <th><label>Compound Iteration 2</label></th>
+          </tr>
+          <tr>
+            <td><label>POS reward</label></td>
+            <td><label id="customDay"></label></td>
+            <td><label id="customDay2"></label></td>
+          </tr>
+          <tr>
+            <td><label>30 day POS reward</label></td>
+            <td><label id="30Day"></label></td>
+            <td><label id="30Day2"></label></td>
+          </tr>
+          <tr>
+            <td><label>90 day POS reward</label></td>
+            <td><label id="90Day"></label></td>
+            <td><label id="90Day2"></label></td>
+          </tr>
+          <tr>
+            <td><label>custom day total</label></td>
+            <td><label id="customDayTotal"></label></td>
+            <td><label id="customDayTotal2"></label></td>
+          </tr>
+          <tr>
+            <td><label>30 day total</label></td>
+            <td><label id="30DayTotal"></label></td>
+            <td><label id="30DayTotal2"></label></td>
+          </tr>
+          <tr>
+            <td><label>90 day total</label></td>
+            <td><label id="90DayTotal"></label></td>
+            <td><label id="90DayTotal2"></label></td>
+          </tr>
+        </table>
+        <br />
+        <div id="footer">
+          <a href="http://peer4commit.com/projects/5" target="_blank">Donate to the development of this project</a><br />
+          <a href="http://donate.peercointalk.org" target="_blank">Donate to Peercointalk projects</a><br />
+          <a href="https://github.com/FuzzyBearBTC/peercoin-POSCalculator" target="_blank">Github Source Code</a>
+        </div>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-46906643-4', 'peercointalk.org');
-  ga('send', 'pageview');
-
-</script>
-</body>
+          ga('create', 'UA-46906643-4', 'peercointalk.org');
+          ga('send', 'pageview');
+        </script>
+      </div>
+    </div>
+  </body>
 </html>
