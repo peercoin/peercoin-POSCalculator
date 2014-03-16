@@ -32,22 +32,27 @@
 
       function toFixed(value, precision)
       {
-        var precision = precision || 0,
-          neg = value < 0,
-          power = Math.pow(10, precision),
-          value = Math.round(value * power),
-          integral = String((neg ? Math.ceil : Math.floor)(value / power)),
-          fraction = String((neg ? -value : value) % power),
-          padding = new Array(Math.max(precision - fraction.length, 0) + 1).join('0');
-
-        return precision ? integral + '.' +  padding + fraction : integral;
+        var precision = (precision || 0);
+        var neg = (value < 0);
+        var power = Math.pow(10, precision);
+        var value = Math.round(value * power);
+        var integral = String((neg ? Math.ceil : Math.floor)(value / power));
+        var fraction = String((neg ? -value : value) % power);
+        var padding = new Array(Math.max(precision - fraction.length, 0) + 1).join('0');
+        var res = precision ? (integral + '.' +  padding + fraction) : integral;
+        return res;
       }
 
       function calculateProbStake(days, coins, difficulty)
       {
-        var maxTarget = Math.pow(2, 224);
-        var target = maxTarget / difficulty;
-        var prob = (days < 31) ? 0 : ((target * coins * days) / Math.pow(2, 256));
+        var prob = 0;
+        if(days > 30)
+        {
+          var maxTarget = Math.pow(2, 224);
+          var target = maxTarget / difficulty;
+          var dayWeight = Math.min(days, 90) - 30;
+          prob = (target * coins * dayWeight) / Math.pow(2, 256);
+        }
         return prob;
       }
 
@@ -65,55 +70,52 @@
         return res;
       }
 
-      function run() {
-        //   alert("calculating the Proof Of Stake reward");
+      function calculateReward(days, coins)
+      {
+        var res = 0;
+        if(days > 30)
+        {
+          res = 0.01 * (days * coins * 33) / (365 * 33 + 8);
+        }
+        return res;
+      }
+
+      function run()
+      {
         var coinValue = document.getElementById('NumberOfCoinsStart').value;
         var Days = document.getElementById('AgeOfTransaction').value;
         var difficulty = document.getElementById('POSDifficulty').value;
-        document.getElementById('nbDaysReward').innerHTML = Days + ' day reward';
-        document.getElementById('nbDaysTotal').innerHTML = Days + ' day total';
-        //*Max Coin days 90*//
-        if (Days > 91)
-        {
-          Days = 91;
-        }
-        //	alert("Number Of Coins Start = " + coinValue);
-        //	alert("Age of transaction = " + Days);
-        document.getElementById('probNextBlock').innerHTML = toFixed(calculateProbNextBlock(Days, coinValue, difficulty) * 100, 6) + '%';
-        document.getElementById('probBlockToday').innerHTML = toFixed(calculateProbBlockToday(Days, coinValue, difficulty) * 100, 6) + '%';
 
+        // Minting probabilities
+        var probNextBlock = calculateProbNextBlock(Days, coinValue, difficulty);
+        var probBlockToday = calculateProbBlockToday(Days, coinValue, difficulty);
+
+        document.getElementById('nbDaysReward').innerHTML = 'Reward (' + Days + 'd)';
+        document.getElementById('nbDaysTotal').innerHTML = 'Total (' + Days + 'd)';
+        document.getElementById('probNextBlock').innerHTML = toFixed(probNextBlock * 100, 6) + '%';
+        document.getElementById('probBlockToday').innerHTML = toFixed(probBlockToday * 100, 6) + '%';
+
+        // First reward
         var customPOSReward = calculateReward(Days, coinValue);
         var minPOSReward = calculateReward(31, coinValue);
-        var maxPOSReward = calculateReward(91, coinValue);
         var customDayTotal = parseFloat(customPOSReward)+parseFloat(coinValue);
-        var maxDayTotal = parseFloat(maxPOSReward)+parseFloat(coinValue);
         var minDayTotal = parseFloat(minPOSReward)+parseFloat(coinValue);
-        //alert("Proof Of Stake Reward = " + customPOSReward);
+
         document.getElementById('customDay').innerHTML = toFixed(customPOSReward, 6) + ' PPC';
-        document.getElementById('30Day').innerHTML = toFixed(minPOSReward, 6) + ' PPC';
-        document.getElementById('90Day').innerHTML = toFixed(maxPOSReward, 6) + ' PPC';
+        document.getElementById('31Day').innerHTML = toFixed(minPOSReward, 6) + ' PPC';
         document.getElementById('customDayTotal').innerHTML = toFixed(customDayTotal, 6) + ' PPC';
-        document.getElementById('30DayTotal').innerHTML = toFixed(minDayTotal, 6) + ' PPC';
-        document.getElementById('90DayTotal').innerHTML = toFixed(maxDayTotal, 6) + ' PPC';
+        document.getElementById('31DayTotal').innerHTML = toFixed(minDayTotal, 6) + ' PPC';
         
-        ////second compound interest ////
-        var customPOSReward2 = calculateReward(Days, customDayTotal);
+        // Compound interest
+        var customPOSReward2 = calculateReward(31, customDayTotal);
         var minPOSReward2 = calculateReward(31, minDayTotal);
-        var maxPOSReward2 = calculateReward(91, maxDayTotal);
         var customDayTotal2 = parseFloat(customPOSReward2)+parseFloat(customDayTotal);
         var minDayTotal2 = parseFloat(minPOSReward2)+parseFloat(minDayTotal);
-        var maxDayTotal2 = parseFloat(maxPOSReward2)+parseFloat(maxDayTotal);
-        //alert("Proof Of Stake Reward = " + customPOSReward2);
-        document.getElementById('customDay2').innerHTML = toFixed(customPOSReward2, 6) + ' PPC';
-        document.getElementById('30Day2').innerHTML = toFixed(minPOSReward2, 6) + ' PPC';
-        document.getElementById('90Day2').innerHTML = toFixed(maxPOSReward2, 6) + ' PPC';
-        document.getElementById('customDayTotal2').innerHTML = toFixed(customDayTotal2, 6) + ' PPC';
-        document.getElementById('30DayTotal2').innerHTML = toFixed(minDayTotal2, 6) + ' PPC';
-        document.getElementById('90DayTotal2').innerHTML = toFixed(maxDayTotal2, 6) + ' PPC';
-      }
 
-      function calculateReward(days, coins){
-        return (days<31?0:((days*coins)*33/((365*33+8))*0.01));
+        document.getElementById('customDay2').innerHTML = toFixed(customPOSReward2, 6) + ' PPC';
+        document.getElementById('31Day2').innerHTML = toFixed(minPOSReward2, 6) + ' PPC';
+        document.getElementById('customDayTotal2').innerHTML = toFixed(customDayTotal2, 6) + ' PPC';
+        document.getElementById('31DayTotal2').innerHTML = toFixed(minDayTotal2, 6) + ' PPC';
       }
     </script>
   </head>
@@ -125,15 +127,16 @@
           <span>Currently it is very early days... so only basic function but you can:</span>
         </p>
         <ul>
-          <li>Enter the amount of coins you sent in 1 transaction, and the number of days that have passed to get a readout.</li>
-          <li>The first column shows you the POS reward for your custom days, 30 days (the min number of days to generate a POS block) and 90 days (the max amount of coin days you can earn on your transaction).</li>
-          <li>The second column then shows you the POS reward for having not moved the coins + the POS earned from before (so your compound interest) on you initial holding.</li>
-          <li>More features to come</li>
+          <li>Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.</li>
+          <li>The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.</li>
+          <li>The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).</li>
+          <li>The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).</li>
+          <li>More features to come...</li>
         </ul>
         <br />
         <table>
           <tr>
-            <td>Number Of Coins Start</td>
+            <td>Number Of Coins</td>
             <td><input type ="number" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"></td>
           </tr>
           <tr>
@@ -167,38 +170,28 @@
         <table class="result">
           <tr>
             <th />
-            <th><label>Compound Iteration 1</label></th>
-            <th><label>Compound Iteration 2</label></th>
+            <th><label>First block</label></th>
+            <th><label>Second block (+31d)</label></th>
           </tr>
           <tr>
-            <td><label id="nbDaysReward">reward</label></td>
+            <td><label id="nbDaysReward">Reward</label></td>
             <td class="num"><label id="customDay"></label></td>
             <td class="num"><label id="customDay2"></label></td>
           </tr>
           <tr>
-            <td><label id="nbDaysTotal">total</label></td>
+            <td><label id="nbDaysTotal">Total</label></td>
             <td class="num"><label id="customDayTotal"></label></td>
             <td class="num"><label id="customDayTotal2"></label></td>
           </tr>
           <tr>
-            <td><label>30 day reward</label></td>
-            <td class="num"><label id="30Day"></label></td>
-            <td class="num"><label id="30Day2"></label></td>
+            <td><label>Minimum reward (31d)</label></td>
+            <td class="num"><label id="31Day"></label></td>
+            <td class="num"><label id="31Day2"></label></td>
           </tr>
           <tr>
-            <td><label>30 day total</label></td>
-            <td class="num"><label id="30DayTotal"></label></td>
-            <td class="num"><label id="30DayTotal2"></label></td>
-          </tr>
-          <tr>
-            <td><label>90 day reward</label></td>
-            <td class="num"><label id="90Day"></label></td>
-            <td class="num"><label id="90Day2"></label></td>
-          </tr>
-          <tr>
-            <td><label>90 day total</label></td>
-            <td class="num"><label id="90DayTotal"></label></td>
-            <td class="num"><label id="90DayTotal2"></label></td>
+            <td><label>Minimum total (31d)</label></td>
+            <td class="num"><label id="31DayTotal"></label></td>
+            <td class="num"><label id="31DayTotal2"></label></td>
           </tr>
         </table>
         <br />
