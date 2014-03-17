@@ -70,6 +70,19 @@
         return res;
       }
 
+      function calculateProbBlockNDays(days, coins, difficulty, n)
+      {
+        var prob = 1;
+        var p = 0;
+        for(i = 0; i < n; i++)
+        {
+          p = calculateProbBlockToday(parseFloat(days) + i, coins, difficulty);
+          prob = prob * (1 - p);
+        }
+        prob = 1 - prob;
+        return prob;
+      }
+
       function calculateReward(days, coins)
       {
         var res = 0;
@@ -89,11 +102,17 @@
         // Minting probabilities
         var probNextBlock = calculateProbNextBlock(Days, coinValue, difficulty);
         var probBlockToday = calculateProbBlockToday(Days, coinValue, difficulty);
+        var probBlock31d = calculateProbBlockNDays(Days, coinValue, difficulty, 31);
+        var probBlock90d = calculateProbBlockNDays(Days, coinValue, difficulty, 90);
+        var probBlockYear = calculateProbBlockNDays(Days, coinValue, difficulty, 365);
 
         document.getElementById('nbDaysReward').innerHTML = 'Reward (' + Days + 'd)';
         document.getElementById('nbDaysTotal').innerHTML = 'Total (' + Days + 'd)';
         document.getElementById('probNextBlock').innerHTML = toFixed(probNextBlock * 100, 6) + '%';
         document.getElementById('probBlockToday').innerHTML = toFixed(probBlockToday * 100, 6) + '%';
+        document.getElementById('probBlock31d').innerHTML = toFixed(probBlock31d * 100, 6) + '%';
+        document.getElementById('probBlock90d').innerHTML = toFixed(probBlock90d * 100, 6) + '%';
+        document.getElementById('probBlockYear').innerHTML = toFixed(probBlockYear * 100, 6) + '%';
 
         // First reward
         var customPOSReward = calculateReward(Days, coinValue);
@@ -154,16 +173,20 @@
         <br />
         <table class="result">
           <tr>
-            <th />
+            <th>Minting POS block within</th>
+            <th>10 min</th>
+            <th>24 hours</th>
+            <th>31 days</th>
+            <th>90 days</th>
+            <th>1 year</th>
+          </tr>
+          <tr>
             <th>Probability</th>
-          </tr>
-          <tr>
-            <td>Generation of the next POS block</td>
             <td class="num"><label id="probNextBlock"></label></td>
-          </tr>
-          <tr>
-            <td>Generation of a POS block in the next 24h</td>
             <td class="num"><label id="probBlockToday"></label></td>
+            <td class="num"><label id="probBlock31d"></label></td>
+            <td class="num"><label id="probBlock90d"></label></td>
+            <td class="num"><label id="probBlockYear"></label></td>
           </tr>
         </table>
         <br />
@@ -174,22 +197,22 @@
             <th><label>Second block (+31d)</label></th>
           </tr>
           <tr>
-            <td><label id="nbDaysReward">Reward</label></td>
+            <th><label id="nbDaysReward">Reward</label></th>
             <td class="num"><label id="customDay"></label></td>
             <td class="num"><label id="customDay2"></label></td>
           </tr>
           <tr>
-            <td><label id="nbDaysTotal">Total</label></td>
+            <th><label id="nbDaysTotal">Total</label></th>
             <td class="num"><label id="customDayTotal"></label></td>
             <td class="num"><label id="customDayTotal2"></label></td>
           </tr>
           <tr>
-            <td><label>Minimum reward (31d)</label></td>
+            <th><label>Minimum reward (31d)</label></th>
             <td class="num"><label id="31Day"></label></td>
             <td class="num"><label id="31Day2"></label></td>
           </tr>
           <tr>
-            <td><label>Minimum total (31d)</label></td>
+            <th><label>Minimum total (31d)</label></th>
             <td class="num"><label id="31DayTotal"></label></td>
             <td class="num"><label id="31DayTotal2"></label></td>
           </tr>
