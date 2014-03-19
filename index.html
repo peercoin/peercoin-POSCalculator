@@ -1,12 +1,14 @@
 <!doctype html>
 <meta charset=utf-8>
-<title>Peercoin - POS calculator</title>
+<title id=title>Peercoin - POS calculator</title>
 <link rel="shortcut icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A7PT4Mszm8pmw3e3bltjr+ofZ6vqM4O3bq+jxmebz9zL///8A////AP///wD///8A////AP///wD6/P0Jy+fzmqjc8P2O0+n9edXp/XDf7/1s6fX9Z+z3/WDq9v1T5vP9oefwm/r7/Qn///8A////AP///wD6+/0Jwef0wZLS6f1esdP9SKbD/0Kmv/8/r8b/P8bc/0Hd7/9F6vf/WfL7/V/u+f2a6PDB+vv9Cf///wD///8A0Ov2mYfQ6v1FmMX9O5TC/zS51f890N//SfX+/y2hvv81wt//PtHo/0/h8f9q7/n9kvH5/cnt9Jr///8A8PX5MMTn8v1Dmcn9MY7D/yiJvv8qpMv/MrvY/zja7f8plLX/Nq3S/0m92/9czeX/cNzt/5Hr9f3O9Pn98fb5MNPq8paDvdr9KYrE/yKIw/8ehsH/HprN/x+gzv8ltNv/LYux/0Sgyv9XsNP/asDc/37O5P+T3Oz/0fL4/d/w9pe/5e/XQ5nJ/R6GxP8dhsX/HofE/yGg0v8gnMr/H6TW/zKEqv9IlLb/VZW0/3az0f+Kxd7/h8rh/4bT5/2S2erXmdzs+CyIvf0ehsL/H4fE/yaKxv8srdv/J6vU/zq65P9XveP/e8nm/5bW6/9pn7f/ZqvO/0+nzv9BrNL9Q7jb+E/K5fgjg7b9JYe//y2Lwv83j8X/dr/c/2LB3P9q1PL/S6yg/wZ+KP9UnJT/QarM/y6Dr/8kjsP/JZLF/Tus1/iP3O3XNo+6/TKJvP87jr//RZLC/4rD2P+w0dv/wuz2/x+UU/8EkjP/F4tn/y2nuP8dgLH/H43G/yKVy/1XttzX2u/2lH+20P08ibf/RY68/0+Tv/+BxNv/o9Hd/8zs8v8ro2H/J6lp/xWXXf87web/IIO3/yCOyv8iodb9lNLqlvH2+i/k8fb9U4my/U+MuP9SkLv/nczf/5HW5f9l0uj/PKWX/2S3qf+v3+n/a7XT/x+Myv8gk8/9MLnl/eTy+DD///8A7fP4mMzZ5P9Og6//RIm2/4+71P+Yz+L/Trza/ze11f9at9T/XanM/yONxP8jjsj9Lrfk/Znb8Zj///8A////APv8/Qfu9fi/v9Ph/UaBrP03hLT/MIe3/ymJuv8li73/JIy//ySNwf8zkL/9lszi/aPf8cD6/P0H////AP///wD///8A+/z9B+vz+Jng7vT9jbPM/U6Otf01gK39K4Gv/SyMt/1HpMX9pNnm/eHu9Jn7/P0J////AP///wD///8A////AP///wD///8A8fb6MOnz+JfP7fbZkt3u+FfN5/hkz+fZpd7tl+nz+DH///8A////AP///wD///8A+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==">
 <style>
     html { height: 100%; margin: 0; }
     body { background-color: #C0C0C0; height: 100%; margin: 0; }
     div#wrap { height: auto !important; margin: 0; min-height: 100% }
     article#content { background-color: #FFFFFF; border: 1px solid #000000; height: 100%; margin: 3px auto 0; padding: 5px 10px; max-width: 768px; }
+    header { text-align: center; }
+    header a { font-size: 80%; display: inline-block; }
     header h1 { font-size: 140%; text-align: center; }
     input[type=number] { width: 120px; }
     table.result { border: 1px solid #000000; border-collapse: collapse; }
@@ -19,43 +21,45 @@
 <div id=wrap>
     <article id=content>
         <header>
-            <h1>Peercoin Proof Of Stake (POS) calculator</h1>
+            <a href="?lang=en">English</a>
+            <a href="?lang=fr">Français</a>
+            <h1><label id=header_title>Peercoin Proof Of Stake (POS) calculator</label></h1>
         </header>
         <p>
-            <span>Currently it is very early days... so only basic function but you can:</span>
+            <span><label id=intro>Currently it is very early days... so only basic function but you can:</label></span>
         <ul>
-            <li>Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.
-            <li>The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.
-            <li>The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).
-            <li>The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).
-            <li>More features to come...
+            <li><label id=desc1>Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.</label>
+            <li><label id=desc2>The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.</label>
+            <li><label id=desc3>The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).</label>
+            <li><label id=desc4>The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).</label>
+            <li><label id=desc5>More features to come...</label>
         </ul>
         <br>
         <table>
             <tr>
-                <td>Number Of Coins
+                <td><label id=entry_coins>Number Of Coins</label>
                 <td><input type=number id=NumberOfCoinsStart value=1000 onBlur="return is_int(this)">
             <tr>
-                <td>Age of transaction (days)
+                <td><label id=entry_days>Age of transaction (days)</label>
                 <td><input type=number id=AgeOfTransaction value=31>
             <tr>
-                <td>POS difficulty
+                <td><label id=entry_difficulty>POS difficulty</label>
                 <td><input type=number id=POSDifficulty value=10>
             <tr>
-                <td><input type=button onclick=run() value="Calculate POS reward">
+                <td><input id=entry_button type=button onclick=run() value="Calculate POS reward">
                 <td>
         </table>
         <br>
         <table class=result>
             <tr>
-                <th>Minting POS block within
-                <th>10 min
-                <th>24 hours
-                <th>31 days
-                <th>90 days
-                <th>1 year
+                <th><label id=prob_mint>Minting POS block within</label>
+                <th><label id=prob_10m>10 min</label>
+                <th><label id=prob_24h>24 hours</label>
+                <th><label id=prob_31d>31 days</label>
+                <th><label id=prob_90d>90 days</label>
+                <th><label id=prob_1y>1 year</label>
             <tr>
-                <th>Probability
+                <th><label id=prob_prob>Probability</label>
                 <td class=num><label id=probNextBlock></label>
                 <td class=num><label id=probBlockToday></label>
                 <td class=num><label id=probBlock31d></label>
@@ -66,30 +70,30 @@
         <table class=result>
             <tr>
                 <th>
-                <th><label>First block</label>
-                <th><label>Second block (+31d)</label>
+                <th><label id=reward_block1>First block</label>
+                <th><label id=reward_block2>Second block (+31)</label>
             <tr>
-                <th><label id=nbDaysReward>Reward</label>
+                <th><label id=reward_custom>Reward</label><label id=nbDaysReward></label>
                 <td class=num><label id=customDay></label>
                 <td class=num><label id=customDay2></label>
             <tr>
-                <th><label id="nbDaysTotal">Total</label>
+                <th><label id=reward_custom_total>Total</label><label id=nbDaysTotal></label>
                 <td class=num><label id=customDayTotal></label>
                 <td class=num><label id=customDayTotal2></label>
             <tr>
-                <th><label>Minimum reward (31d)</label>
+                <th><label id=reward_min>Minimum reward (31)</label>
                 <td class=num><label id=31Day></label>
                 <td class=num><label id=31Day2></label>
             <tr>
-                <th><label>Minimum total (31d)</label>
+                <th><label id=reward_min_total>Minimum total (31)</label>
                 <td class=num><label id=31DayTotal></label>
                 <td class=num><label id=31DayTotal2></label>
         </table>
         <br>
         <footer>
-            <a href=http://peer4commit.com/projects/5 target=_blank>Donate to the development of this project</a>
-            <a href=http://donate.peercointalk.org/ target=_blank>Donate to Peercointalk projects</a>
-            <a href=https://github.com/FuzzyBearBTC/peercoin-POSCalculator target=_blank>Github Source Code</a>
+            <a id=footer_peer4commit href=http://peer4commit.com/projects/5 target=_blank>Donate to the development of this project</a>
+            <a id=footer_peercointalk href=http://donate.peercointalk.org/ target=_blank>Donate to Peercointalk projects</a>
+            <a id=footer_github href=https://github.com/FuzzyBearBTC/peercoin-POSCalculator target=_blank>Github Source Code</a>
         </footer>
     </article>
 </div>
@@ -164,8 +168,8 @@
         var probBlock90d = calculateProbBlockNDays(Days, coinValue, difficulty, 90);
         var probBlockYear = calculateProbBlockNDays(Days, coinValue, difficulty, 365);
 
-        document.getElementById('nbDaysReward').innerHTML = 'Reward (' + Days + 'd)';
-        document.getElementById('nbDaysTotal').innerHTML = 'Total (' + Days + 'd)';
+        document.getElementById('nbDaysReward').innerHTML = ' (' + Days + ')';
+        document.getElementById('nbDaysTotal').innerHTML = ' (' + Days + ')';
         document.getElementById('probNextBlock').innerHTML = toFixed(probNextBlock * 100, 6) + '%';
         document.getElementById('probBlockToday').innerHTML = toFixed(probBlockToday * 100, 6) + '%';
         document.getElementById('probBlock31d').innerHTML = toFixed(probBlock31d * 100, 6) + '%';
@@ -194,6 +198,101 @@
         document.getElementById('customDayTotal2').innerHTML = toFixed(customDayTotal2, 6) + ' PPC';
         document.getElementById('31DayTotal2').innerHTML = toFixed(minDayTotal2, 6) + ' PPC';
     };
+
+    var translations = {
+        "en": {
+            "title": "Peercoin - POS calculator",
+            "header_title": "Peercoin Proof Of Stake (POS) calculator",
+            "intro": "Currently it is very early days... so only basic function but you can:",
+            "desc1": "Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.",
+            "desc2": "The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.",
+            "desc3": "The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).",
+            "desc4": "The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).",
+            "desc5": "More features to come...",
+            "entry_coins": "Number Of Coins",
+            "entry_days": "Age of transaction (days)",
+            "entry_difficulty": "POS difficulty",
+            "entry_button": "Calculate POS reward",
+            "prob_mint": "Minting POS block within",
+            "prob_10m": "10 min",
+            "prob_24h": "24 hours",
+            "prob_31d": "31 days",
+            "prob_90d": "90 days",
+            "prob_1y": "1 year",
+            "prob_prob": "Probability",
+            "reward_block1": "First block",
+            "reward_block2": "Second block (+31)",
+            "reward_custom": "Reward",
+            "reward_custom_total": "Total",
+            "reward_min": "Minimum reward (31)",
+            "reward_min_total": "Minimum total (31)",
+            "footer_peer4commit": "Donate to the development of this project",
+            "footer_peercointalk": "Donate to Peercointalk projects",
+            "footer_github": "Github Source Code"
+        },
+        "fr": {
+            "title": "Peercoin - calculateur POS",
+            "header_title": "Calculateur Preuve de Part (POS) Peercoin",
+            "intro": "N'en est qu'à ses débuts... seulement des fonctions basiques, mais vous pouvez&nbsp;:",
+            "desc1": "Entrer le montant reçu dans une transaction, le nombre de jours écoulés depuis et la difficulté POS pour avoir un résultat.",
+            "desc2": "La probabilité de générer un bloc POS atteint son maximum après 90 jours et n'augmente plus après ça.",
+            "desc3": "La première colonne du tableau des récompenses vous indique la récompense POS pour le nombre de jours que vous avez entré et pour 31 jours (le nombre de jours minimum pour générer un bloc POS).",
+            "desc4": "La deuxième colonne du tableau vous indique ensuite la récompense POS (intérêts composés) pour la génération d'un bloc 31 jours après le premier bloc (si vous n'avez pas déplacé les pièces et les intérêts POS entre-temps).",
+            "desc5": "D'autres fonctionnalités à venir...",
+            "entry_coins": "Nombre de pièces",
+            "entry_days": "Âge de la transaction (jours)",
+            "entry_difficulty": "Difficulté POS",
+            "entry_button": "Calculer récompense POS",
+            "prob_mint": "Générer un bloc POS en",
+            "prob_10m": "10 min",
+            "prob_24h": "24 heures",
+            "prob_31d": "31 jours",
+            "prob_90d": "90 jours",
+            "prob_1y": "1 an",
+            "prob_prob": "Probabilité",
+            "reward_block1": "Premier block",
+            "reward_block2": "Second block (+31)",
+            "reward_custom": "Récompense",
+            "reward_custom_total": "Total",
+            "reward_min": "Récompense minimum (31)",
+            "reward_min_total": "Total minimum (31)",
+            "footer_peer4commit": "Donner pour développer ce projet",
+            "footer_peercointalk": "Donner aux projets Peercointalk",
+            "footer_github": "Code source sur Github"
+        }
+    };
+
+    var getParam = function(param) {
+        var queryString = location.search.substring(1);
+        var regexp = /([^&=]+)=([^&]*)/g;
+        var m;
+        var res = {};
+        while(m = regexp.exec(queryString)) {
+            res[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        return res[param];
+    };
+
+    var translate = function(lang) {
+        var id;
+        var dict;
+        if(lang == "undefined") {
+            lang = "en";
+        }
+        dict = translations[lang];
+        for(id in dict) {
+            if(document.getElementById(id)) {
+                if(document.getElementById(id).value) {
+                    document.getElementById(id).value = dict[id];
+                }
+                else {
+                    document.getElementById(id).innerHTML = dict[id];
+                }
+            }
+        }
+    };
+
+    translate(getParam("lang"));
 </script>
 
 <!-- Google Analytics -->
