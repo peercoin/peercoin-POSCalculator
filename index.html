@@ -1,7 +1,7 @@
 <!doctype html>
 <meta charset=utf-8>
 <title id=title>Peercoin POS Calculator</title>
-<link rel="shortcut icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A7PT4Mszm8pmw3e3bltjr+ofZ6vqM4O3bq+jxmebz9zL///8A////AP///wD///8A////AP///wD6/P0Jy+fzmqjc8P2O0+n9edXp/XDf7/1s6fX9Z+z3/WDq9v1T5vP9oefwm/r7/Qn///8A////AP///wD6+/0Jwef0wZLS6f1esdP9SKbD/0Kmv/8/r8b/P8bc/0Hd7/9F6vf/WfL7/V/u+f2a6PDB+vv9Cf///wD///8A0Ov2mYfQ6v1FmMX9O5TC/zS51f890N//SfX+/y2hvv81wt//PtHo/0/h8f9q7/n9kvH5/cnt9Jr///8A8PX5MMTn8v1Dmcn9MY7D/yiJvv8qpMv/MrvY/zja7f8plLX/Nq3S/0m92/9czeX/cNzt/5Hr9f3O9Pn98fb5MNPq8paDvdr9KYrE/yKIw/8ehsH/HprN/x+gzv8ltNv/LYux/0Sgyv9XsNP/asDc/37O5P+T3Oz/0fL4/d/w9pe/5e/XQ5nJ/R6GxP8dhsX/HofE/yGg0v8gnMr/H6TW/zKEqv9IlLb/VZW0/3az0f+Kxd7/h8rh/4bT5/2S2erXmdzs+CyIvf0ehsL/H4fE/yaKxv8srdv/J6vU/zq65P9XveP/e8nm/5bW6/9pn7f/ZqvO/0+nzv9BrNL9Q7jb+E/K5fgjg7b9JYe//y2Lwv83j8X/dr/c/2LB3P9q1PL/S6yg/wZ+KP9UnJT/QarM/y6Dr/8kjsP/JZLF/Tus1/iP3O3XNo+6/TKJvP87jr//RZLC/4rD2P+w0dv/wuz2/x+UU/8EkjP/F4tn/y2nuP8dgLH/H43G/yKVy/1XttzX2u/2lH+20P08ibf/RY68/0+Tv/+BxNv/o9Hd/8zs8v8ro2H/J6lp/xWXXf87web/IIO3/yCOyv8iodb9lNLqlvH2+i/k8fb9U4my/U+MuP9SkLv/nczf/5HW5f9l0uj/PKWX/2S3qf+v3+n/a7XT/x+Myv8gk8/9MLnl/eTy+DD///8A7fP4mMzZ5P9Og6//RIm2/4+71P+Yz+L/Trza/ze11f9at9T/XanM/yONxP8jjsj9Lrfk/Znb8Zj///8A////APv8/Qfu9fi/v9Ph/UaBrP03hLT/MIe3/ymJuv8li73/JIy//ySNwf8zkL/9lszi/aPf8cD6/P0H////AP///wD///8A+/z9B+vz+Jng7vT9jbPM/U6Otf01gK39K4Gv/SyMt/1HpMX9pNnm/eHu9Jn7/P0J////AP///wD///8A////AP///wD///8A8fb6MOnz+JfP7fbZkt3u+FfN5/hkz+fZpd7tl+nz+DH///8A////AP///wD///8A+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==">
+<link rel=icon href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A7PT4Mszm8pmw3e3bltjr+ofZ6vqM4O3bq+jxmebz9zL///8A////AP///wD///8A////AP///wD6/P0Jy+fzmqjc8P2O0+n9edXp/XDf7/1s6fX9Z+z3/WDq9v1T5vP9oefwm/r7/Qn///8A////AP///wD6+/0Jwef0wZLS6f1esdP9SKbD/0Kmv/8/r8b/P8bc/0Hd7/9F6vf/WfL7/V/u+f2a6PDB+vv9Cf///wD///8A0Ov2mYfQ6v1FmMX9O5TC/zS51f890N//SfX+/y2hvv81wt//PtHo/0/h8f9q7/n9kvH5/cnt9Jr///8A8PX5MMTn8v1Dmcn9MY7D/yiJvv8qpMv/MrvY/zja7f8plLX/Nq3S/0m92/9czeX/cNzt/5Hr9f3O9Pn98fb5MNPq8paDvdr9KYrE/yKIw/8ehsH/HprN/x+gzv8ltNv/LYux/0Sgyv9XsNP/asDc/37O5P+T3Oz/0fL4/d/w9pe/5e/XQ5nJ/R6GxP8dhsX/HofE/yGg0v8gnMr/H6TW/zKEqv9IlLb/VZW0/3az0f+Kxd7/h8rh/4bT5/2S2erXmdzs+CyIvf0ehsL/H4fE/yaKxv8srdv/J6vU/zq65P9XveP/e8nm/5bW6/9pn7f/ZqvO/0+nzv9BrNL9Q7jb+E/K5fgjg7b9JYe//y2Lwv83j8X/dr/c/2LB3P9q1PL/S6yg/wZ+KP9UnJT/QarM/y6Dr/8kjsP/JZLF/Tus1/iP3O3XNo+6/TKJvP87jr//RZLC/4rD2P+w0dv/wuz2/x+UU/8EkjP/F4tn/y2nuP8dgLH/H43G/yKVy/1XttzX2u/2lH+20P08ibf/RY68/0+Tv/+BxNv/o9Hd/8zs8v8ro2H/J6lp/xWXXf87web/IIO3/yCOyv8iodb9lNLqlvH2+i/k8fb9U4my/U+MuP9SkLv/nczf/5HW5f9l0uj/PKWX/2S3qf+v3+n/a7XT/x+Myv8gk8/9MLnl/eTy+DD///8A7fP4mMzZ5P9Og6//RIm2/4+71P+Yz+L/Trza/ze11f9at9T/XanM/yONxP8jjsj9Lrfk/Znb8Zj///8A////APv8/Qfu9fi/v9Ph/UaBrP03hLT/MIe3/ymJuv8li73/JIy//ySNwf8zkL/9lszi/aPf8cD6/P0H////AP///wD///8A+/z9B+vz+Jng7vT9jbPM/U6Otf01gK39K4Gv/SyMt/1HpMX9pNnm/eHu9Jn7/P0J////AP///wD///8A////AP///wD///8A8fb6MOnz+JfP7fbZkt3u+FfN5/hkz+fZpd7tl+nz+DH///8A////AP///wD///8A+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==">
 <style>
 
 /* CSS based on peercoin.net by super3 and other contributors */
@@ -30,6 +30,7 @@ footer a:hover { text-decoration: underline; }
         <section id=languages>
             <label id=header_prefix>Languages:</label>
             <a href="?lang=en">English</a>
+            <a href="?lang=de">Deutsch</a>
             <a href="?lang=es">Español</a>
             <a href="?lang=fr">Français</a>
             <a href="?lang=zh-cn">简体中文</a>
@@ -243,6 +244,37 @@ footer a:hover { text-decoration: underline; }
             "footer_peercointalk": "Donate to Peercointalk projects",
             "footer_github": "Contribute to this project on GitHub"
         },
+        "de": {
+            "title": "Peercoin POS Rechner",
+            "header_prefix": "Sprachen: ",
+            "header_title": "Peercoin Nachweis-der-Beteiligung (POS) Rechner v0.0.1",
+            "intro": "Derzeit ist es sehr frühen Tage... also nur Grundfunktionen, aber Sie können:",
+            "desc1": "Geben Sie die Menge der Münzen, die Sie in einer Transaktion, die Anzahl der Tage, die vergangen sind und die POS-Schwierigkeit geschickt, eine Anzeige zu erhalten.",
+            "desc2": "Die Wahrscheinlichkeit, dass die Prägung einer Block ihr Maximum erreicht nach 90 Tagen und danach nicht erhöhen.",
+            "desc3": "Die erste Spalte der Belohnung Tabelle zeigt Ihnen die POS Belohnung für Ihre benutzerdefinierten Tage und 31 Tage (die Mindestzahl der Tage, um einen Block zu erzeugen POS).",
+            "desc4": "Die zweite Spalte der Tabelle Lohn zeigt Ihnen dann die POS-Belohnung (Zinsen und Zinseszinsen) für die Prägung eines Blocks 31 Tage nach dem ersten Block (wenn Sie die Münzen und erlangte vor POS verschieben nicht).",
+            "desc5": "Mehr Funktionen zu kommen...",
+            "entry_coins": "Anzahl der Münzen",
+            "entry_days": "Alter der Transaktion (Tage)",
+            "entry_difficulty": "POS Schwierigkeit",
+            "entry_button": "Berechnen POS Belohnung",
+            "prob_mint": "Prägung POS Block innerhalb",
+            "prob_10m": "10 min",
+            "prob_24h": "24 Studen",
+            "prob_31d": "31 Tage",
+            "prob_90d": "90 Tage",
+            "prob_1y": "1 Jahr",
+            "prob_prob": "Wahrscheinlichkeit",
+            "reward_block1": "Erster block",
+            "reward_block2": "Zweiten block (+31)",
+            "reward_custom": "Belohnung",
+            "reward_custom_total": "Gesamt",
+            "reward_min": "Mindestens belohnung (31)",
+            "reward_min_total": "Mindestens insgesamt (31)",
+            "footer_peer4commit": "Spenden Sie an die Entwicklung des Projekts",
+            "footer_peercointalk": "Spenden für Projekte Peercointalk",
+            "footer_github": "Zu diesem Projekt auf GitHub"
+        },
         "es": {
             "title": "Peercoin POS Calculadora",
             "header_prefix": "Idiomas: ",
@@ -304,7 +336,8 @@ footer a:hover { text-decoration: underline; }
             "footer_peer4commit": "Donner pour développer ce projet",
             "footer_peercointalk": "Donner aux projets Peercointalk",
             "footer_github": "Contribuer à ce projet sur ​​GitHub"
-        },"zh-cn": {
+        },
+        "zh-cn": {
             "title": "点点币POS计算器",
             "header_prefix": "语言: ",
             "header_title": "点点币 权益证明 (POS) 计算器 v0.0.1",
