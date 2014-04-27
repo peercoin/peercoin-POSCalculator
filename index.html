@@ -23,10 +23,19 @@ table.result td.num { text-align: right; }
 footer { background-color: #1abc9c; padding: 20px; text-align: center; }
 footer a { color: #fff; display: inline-block; padding: 5px 10px; text-decoration: none; }
 footer a:hover { text-decoration: underline; }
+section#noscript { background-color: #d9534f; color: #fff; font-weight: bold; position: fixed; top: 0; text-align: center; width: 100%; }
+section#noscript-padding { padding-bottom: 52px; }
+
+@media screen and (max-width: 691px) {
+    section#noscript-padding { padding-top: 28px; }
+}
 
 </style>
 <div id=wrap>
     <header>
+        <noscript>
+            <section id=noscript-padding></section>
+        </noscript>
         <section id=languages>
             <label id=header_prefix>Languages:</label>
             <a href="?lang=en">English</a>
@@ -60,9 +69,6 @@ footer a:hover { text-decoration: underline; }
             <tr>
                 <td><label id=entry_difficulty>POS difficulty</label>
                 <td><input type=number id=POSDifficulty value=10>
-            <tr>
-                <td><input id=entry_button type=button onclick=run() value="Calculate POS reward">
-                <td>
         </table>
         <br>
         <table class=result>
@@ -112,6 +118,11 @@ footer a:hover { text-decoration: underline; }
         <a id=footer_github href=https://github.com/FuzzyBearBTC/peercoin-POSCalculator target=_blank>Contribute to this project on GitHub</a>
     </footer>
 </div>
+<noscript>
+    <section id=noscript>
+        <p>Peercoin POS Calculator requires JavaScript. Please enable it in your browser and refresh.
+    </section>
+</noscript>
 <script>
     var is_int = function(value) {
         return ((parseFloat(value) === parseInt(value)) && !isNaN(value));
@@ -228,7 +239,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Number Of Coins",
             "entry_days": "Age of transaction (days)",
             "entry_difficulty": "POS difficulty",
-            "entry_button": "Calculate POS reward",
             "prob_mint": "Minting POS block within",
             "prob_10m": "10 min",
             "prob_24h": "24 hours",
@@ -259,7 +269,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Anzahl der Münzen",
             "entry_days": "Alter der Transaktion (Tage)",
             "entry_difficulty": "POS Schwierigkeit",
-            "entry_button": "Berechnen POS Belohnung",
             "prob_mint": "Prägung POS Block innerhalb",
             "prob_10m": "10 min",
             "prob_24h": "24 Stunden",
@@ -290,7 +299,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Número De Monedas",
             "entry_days": "Edad de transacción (días)",
             "entry_difficulty": "POS dificultad",
-            "entry_button": "Calcular recompensa POS",
             "prob_mint": "Bloque POS dentro de moneda",
             "prob_10m": "10 min",
             "prob_24h": "24 horas",
@@ -321,7 +329,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Nombre de pièces",
             "entry_days": "Âge de la transaction (jours)",
             "entry_difficulty": "Difficulté POS",
-            "entry_button": "Calculer récompense POS",
             "prob_mint": "Générer un bloc POS en",
             "prob_10m": "10 min",
             "prob_24h": "24 heures",
@@ -352,7 +359,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Aantal munten",
             "entry_days": "Ouderdom van een transactie (dagen)",
             "entry_difficulty": "POS moeilijkheid",
-            "entry_button": "Bereken POS beloning",
             "prob_mint": "Mint een POS blok binnen",
             "prob_10m": "10 min",
             "prob_24h": "24 uur",
@@ -383,7 +389,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "Количество монет",
             "entry_days": "Возраст сделки (дней)",
             "entry_difficulty": "Трудность POS",
-            "entry_button": "Рассчитать награду POS",
             "prob_mint": "Чеканка POS блок в",
             "prob_10m": "10 мин",
             "prob_24h": "24 часа",
@@ -414,7 +419,6 @@ footer a:hover { text-decoration: underline; }
             "entry_coins": "币的数目",
             "entry_days": "交易后经过天数",
             "entry_difficulty": "POS难度值",
-            "entry_button": "计算POS收益",
             "prob_mint": "将在以下时间内产生POS块",
             "prob_10m": "10 分钟",
             "prob_24h": "24 小时",
@@ -464,6 +468,23 @@ footer a:hover { text-decoration: underline; }
     };
 
     translate(getParam("lang"));
+    
+    // Calculate the POS reward dynamically, without having to press a button
+    var coinValueInput = document.querySelector('#NumberOfCoinsStart');
+    var daysInput = document.querySelector('#AgeOfTransaction');
+    var difficultyInput = document.querySelector('#POSDifficulty');
+    
+    // Reward is calculated when typing or when the input loses focus
+    coinValueInput.addEventListener('keyup', run);
+    coinValueInput.addEventListener('change', run);
+    daysInput.addEventListener('keyup', run);
+    daysInput.addEventListener('change', run);
+    difficultyInput.addEventListener('keyup', run);
+    difficultyInput.addEventListener('change', run);
+    
+    // Because it runs dynamically, it should run at least once initially
+    run();
+
 </script>
 
 <!-- Google Analytics -->
