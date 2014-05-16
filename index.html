@@ -180,7 +180,7 @@ section#noscript-padding { padding-bottom: 52px; }
         if (days > 30) {
             res = 0.01 * (days * coins * 33) / (365 * 33 + 8);
         }
-        return res;
+        return toFixed(res, 2);
     };
 
     var run = function() {
