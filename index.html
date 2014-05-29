@@ -45,6 +45,7 @@ section#noscript-padding { padding-bottom: 52px; }
             <a href="?lang=nl">Nederlands</a>
             <a href="?lang=ru">русский</a>
             <a href="?lang=zh-cn">简体中文</a>
+            <a href="?lang=no">Norsk</a>
         </section>
         <h1><label id=header_title>Peercoin Proof-Of-Stake (POS) Calculator v0.0.1</label></h1>
     </header>
@@ -57,7 +58,7 @@ section#noscript-padding { padding-bottom: 52px; }
             <li><label id=desc3>The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).</label>
             <li><label id=desc4>The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).</label>
             <li><label id=desc5>POS difficulty value can be obtained from the console window of ppcoin-qt, you can get it with the command: getdifficulty. Or, if you have ppcoind running, in a command prompt: ppcoind getdifficulty</label>
-			<li><label id=desc6>More features to come...</label>
+	     <li><label id=desc6>More features to come...</label>
         </ul>
         <br>
         <table>
@@ -124,6 +125,11 @@ section#noscript-padding { padding-bottom: 52px; }
         <p>Peercoin POS Calculator requires JavaScript. Please enable it in your browser and refresh.
     </section>
 </noscript>
+
+// Source translations from a separate file
+<script src="translations.js"></script>
+
+// Main javascript
 <script>
     var is_int = function(value) {
         return ((parseFloat(value) === parseInt(value)) && !isNaN(value));
@@ -224,219 +230,6 @@ section#noscript-padding { padding-bottom: 52px; }
         document.getElementById('31Day2').innerHTML = toFixed(minPOSReward2, 6) + ' PPC';
         document.getElementById('customDayTotal2').innerHTML = toFixed(customDayTotal2, 6) + ' PPC';
         document.getElementById('31DayTotal2').innerHTML = toFixed(minDayTotal2, 6) + ' PPC';
-    };
-
-    var translations = {
-        "en": {
-            "title": "Peercoin POS Calculator",
-            "header_prefix": "Languages: ",
-            "header_title": "Peercoin Proof-Of-Stake (POS) Calculator v0.0.1",
-            "intro": "Currently it is very early days... so only basic functions but you can:",
-            "desc1": "Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.",
-            "desc2": "The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.",
-            "desc3": "The first column of the reward table shows you the POS reward for your custom days and for 31 days (the minimum number of days to generate a POS block).",
-            "desc4": "The second column of the reward table then shows you the POS reward (compound interest) for minting a block 31 days after the first block (if you didn't move the coins and the POS earned from before).",
-            "desc5": "More features to come...",
-            "entry_coins": "Number Of Coins",
-            "entry_days": "Age of transaction (days)",
-            "entry_difficulty": "POS difficulty",
-            "prob_mint": "Minting POS block within",
-            "prob_10m": "10 min",
-            "prob_24h": "24 hours",
-            "prob_31d": "31 days",
-            "prob_90d": "90 days",
-            "prob_1y": "1 year",
-            "prob_prob": "Probability",
-            "reward_block1": "First block",
-            "reward_block2": "Second block (+31)",
-            "reward_custom": "Reward",
-            "reward_custom_total": "Total",
-            "reward_min": "Minimum reward (31)",
-            "reward_min_total": "Minimum total (31)",
-            "footer_peer4commit": "Donate to the development of this project",
-            "footer_peercointalk": "Donate to Peercointalk projects",
-            "footer_github": "Contribute to this project on GitHub"
-        },
-        "de": {
-            "title": "Peercoin POS Rechner",
-            "header_prefix": "Sprachen: ",
-            "header_title": "Peercoin Nachweis-der-Beteiligung (POS) Rechner v0.0.1",
-            "intro": "Derzeit ist es sehr frühen Tage... also nur Grundfunktionen, aber Sie können:",
-            "desc1": "Geben Sie die Menge der Münzen, die Sie in einer Transaktion, die Anzahl der Tage, die vergangen sind und die POS-Schwierigkeit geschickt, eine Anzeige zu erhalten.",
-            "desc2": "Die Wahrscheinlichkeit, dass die Prägung einer Block ihr Maximum erreicht nach 90 Tagen und danach nicht erhöhen.",
-            "desc3": "Die erste Spalte der Belohnung Tabelle zeigt Ihnen die POS Belohnung für Ihre benutzerdefinierten Tage und 31 Tage (die Mindestzahl der Tage, um einen Block zu erzeugen POS).",
-            "desc4": "Die zweite Spalte der Tabelle Lohn zeigt Ihnen dann die POS-Belohnung (Zinsen und Zinseszinsen) für die Prägung eines Blocks 31 Tage nach dem ersten Block (wenn Sie die Münzen und erlangte vor POS verschieben nicht).",
-            "desc5": "Mehr Funktionen zu kommen...",
-            "entry_coins": "Anzahl der Münzen",
-            "entry_days": "Alter der Transaktion (Tage)",
-            "entry_difficulty": "POS Schwierigkeit",
-            "prob_mint": "Prägung POS Block innerhalb",
-            "prob_10m": "10 min",
-            "prob_24h": "24 Stunden",
-            "prob_31d": "31 Tage",
-            "prob_90d": "90 Tage",
-            "prob_1y": "1 Jahr",
-            "prob_prob": "Wahrscheinlichkeit",
-            "reward_block1": "Erster block",
-            "reward_block2": "Zweiten block (+31)",
-            "reward_custom": "Belohnung",
-            "reward_custom_total": "Gesamt",
-            "reward_min": "Mindestens belohnung (31)",
-            "reward_min_total": "Mindestens insgesamt (31)",
-            "footer_peer4commit": "Spenden Sie an die Entwicklung des Projekts",
-            "footer_peercointalk": "Spenden für Projekte Peercointalk",
-            "footer_github": "Zu diesem Projekt auf GitHub"
-        },
-        "es": {
-            "title": "Peercoin POS Calculadora",
-            "header_prefix": "Idiomas: ",
-            "header_title": "Peercoin Prueba-De-Juego (POS) Calculadora v0.0.1",
-            "intro": "Actualmente es muy primeros días... así que sólo las funciones básicas, pero usted puede:",
-            "desc1": "Anote la cantidad de monedas que envió en una transacción, el número de días que han pasado y la dificultad de POS para obtener una lectura.",
-            "desc2": "La probabilidad de un bloque de moneda alcanza su máximo después de 90 días y no aumenta después de eso.",
-            "desc3": "La primera columna de la tabla de recompensa te muestra la recompensa POS para tus días de encargo y para 31 días (el mínimo número de días para generar un bloque POS).",
-            "desc4": "La segunda columna de la tabla de recompensa luego muestra la recompensa POS (interés compuesto) para la acuñación de un bloque 31 días después del primer bloque (si no se movían las monedas y los POS ganados desde antes).",
-            "desc5": "Más características que vienen...",
-            "entry_coins": "Número De Monedas",
-            "entry_days": "Edad de transacción (días)",
-            "entry_difficulty": "POS dificultad",
-            "prob_mint": "Bloque POS dentro de moneda",
-            "prob_10m": "10 min",
-            "prob_24h": "24 horas",
-            "prob_31d": "31 días",
-            "prob_90d": "90 días",
-            "prob_1y": "1 año",
-            "prob_prob": "Probabilidad",
-            "reward_block1": "Primer bloque",
-            "reward_block2": "Segundo bloque (+31)",
-            "reward_custom": "Recompensa",
-            "reward_custom_total": "Total",
-            "reward_min": "Recompensa mínima (31)",
-            "reward_min_total": "Mínimo total (31)",
-            "footer_peer4commit": "Donar al desarrollo de este proyecto",
-            "footer_peercointalk": "Donar a proyectos Peercointalk",
-            "footer_github": "Contribuir a este proyecto en GitHub"
-        },
-        "fr": {
-            "title": "Peercoin Calculateur POS",
-            "header_prefix": "Langues: ",
-            "header_title": "Calculateur Preuve-de-Part (POS) Peercoin v0.0.1",
-            "intro": "N'en est qu'à ses débuts... seulement des fonctions basiques, mais vous pouvez&nbsp;:",
-            "desc1": "Entrer le montant reçu dans une transaction, le nombre de jours écoulés depuis et la difficulté POS pour avoir un résultat.",
-            "desc2": "La probabilité de générer un bloc POS atteint son maximum après 90 jours et n'augmente plus après ça.",
-            "desc3": "La première colonne du tableau des récompenses vous indique la récompense POS pour le nombre de jours que vous avez entré et pour 31 jours (le nombre de jours minimum pour générer un bloc POS).",
-            "desc4": "La deuxième colonne du tableau vous indique ensuite la récompense POS (intérêts composés) pour la génération d'un bloc 31 jours après le premier bloc (si vous n'avez pas déplacé les pièces et les intérêts POS entre-temps).",
-            "desc5": "D'autres fonctionnalités à venir...",
-            "entry_coins": "Nombre de pièces",
-            "entry_days": "Âge de la transaction (jours)",
-            "entry_difficulty": "Difficulté POS",
-            "prob_mint": "Générer un bloc POS en",
-            "prob_10m": "10 min",
-            "prob_24h": "24 heures",
-            "prob_31d": "31 jours",
-            "prob_90d": "90 jours",
-            "prob_1y": "1 an",
-            "prob_prob": "Probabilité",
-            "reward_block1": "Premier block",
-            "reward_block2": "Second block (+31)",
-            "reward_custom": "Récompense",
-            "reward_custom_total": "Total",
-            "reward_min": "Récompense minimum (31)",
-            "reward_min_total": "Total minimum (31)",
-            "footer_peer4commit": "Donner pour développer ce projet",
-            "footer_peercointalk": "Donner aux projets Peercointalk",
-            "footer_github": "Contribuer à ce projet sur ​​GitHub"
-        },
-        "nl": {
-            "title": "Peercoin POS Calculator",
-            "header_prefix": "Talen: ",
-            "header_title": "Peercoin Bewijs van Aandeel (POS) Calculator v0.0.1",
-            "intro": "Het zijn nog de begindagen... dus alleen basis functies, maar u kan:",
-            "desc1": "Voer het aantal munten in dat u zond in een transactie, het aantal dagen dat is gepasseerd en de POS moeilijkheid om een resultaat te krijgen.",
-            "desc2": "De waarschijnlijkheid on een blok te minten bereikt zijn maximum na 90 dagen en neemt daarna niet meer toe.",
-            "desc3": "De eerste kolom van de belonings tabel geeft de POS beloning weer voor de door u opgegeven dagen en voor 31 dagen (het minimum aantal dagen om een blok te minten).",
-            "desc4": "De tweede kolom van de belonings tabel geeft dan de POS beloning (samengestelde rente) weer voor het minten van een blok 31 dagen na het eerste blok (indien u de munten en de eerder verdiende POS rente niet heeft verplaatst).",
-            "desc5": "Meer functies worden nog toegevoegd...",
-            "entry_coins": "Aantal munten",
-            "entry_days": "Ouderdom van een transactie (dagen)",
-            "entry_difficulty": "POS moeilijkheid",
-            "prob_mint": "Mint een POS blok binnen",
-            "prob_10m": "10 min",
-            "prob_24h": "24 uur",
-            "prob_31d": "31 dagen",
-            "prob_90d": "90 dagen",
-            "prob_1y": "1 jaar",
-            "prob_prob": "Waarschijnlijkheid",
-            "reward_block1": "Eerste blok",
-            "reward_block2": "Tweede blok (+31)",
-            "reward_custom": "Beloning",
-            "reward_custom_total": "Totaal",
-            "reward_min": "Minimum beloning (31)",
-            "reward_min_total": "Minimum totaal (31)",
-            "footer_peer4commit": "Doneer aan de ontwikkeling van dit project",
-            "footer_peercointalk": "Doneer aan Peercointalk projecten",
-            "footer_github": "Draag bij aan dit project op GitHub"
-        },
-        "ru": {
-            "title": "Peercoin POS Калькулятор",
-            "header_prefix": "Языки: ",
-            "header_title": "Peercoin доказательство Кола (POS) Калькулятор v0.0.1",
-            "intro": "В настоящее время это очень рано дней..., так что только основные функции, но вы можете:",
-            "desc1": "Введите количество монет вы послали в сделке, количество дней, прошедших и трудность POS получить отсчет.",
-            "desc2": "Вероятность о чеканке блок достигает своего максимума после 90 дней и не увеличивается после этого.",
-            "desc3": "Первый столбец в таблице награда показывает вам награду POS для ваших пользовательских дней и за 31 дней (минимальное количество дней для создания блока POS).",
-            "desc4": "Во втором столбце таблицы вознаграждения затем показывает вам награду POS (сложный процент) для чеканки блок 31 дней после первого блока (если вы не двигался монеты и POS, полученные от до).",
-            "desc5": "Дополнительные возможности приехать...",
-            "entry_coins": "Количество монет",
-            "entry_days": "Возраст сделки (дней)",
-            "entry_difficulty": "Трудность POS",
-            "prob_mint": "Чеканка POS блок в",
-            "prob_10m": "10 мин",
-            "prob_24h": "24 часа",
-            "prob_31d": "31 дней",
-            "prob_90d": "90 дней",
-            "prob_1y": "1 год",
-            "prob_prob": "вероятность",
-            "reward_block1": "Первый блок",
-            "reward_block2": "Второй блок (+31)",
-            "reward_custom": "Вознаграждение",
-            "reward_custom_total": "общий",
-            "reward_min": "Минимальная награда (31)",
-            "reward_min_total": "Минимальный общий (31)",
-            "footer_peer4commit": "Пожертвовать на развитие проекта",
-            "footer_peercointalk": "Пожертвовать на развитие этого проекта",
-            "footer_github": "Вклад этого проекта на GitHub"
-        },
-        "zh-cn": {
-            "title": "点点币POS计算器",
-            "header_prefix": "语言: ",
-            "header_title": "点点币 权益证明 (POS) 计算器 v0.0.1",
-            "intro": "目前还只能提供简单的功能:",
-            "desc1": "输入你要发送的币数目, 经过的天数 以及点点币的难度值.",
-            "desc2": "当一个币在一个块里到达90天以后，就不会再增值.",
-            "desc3": "表的第一列显示你输入天数的POS分红以及经过31天(产生POS分红块的最小值)的POS分红.",
-            "desc4": "表的第二列显示经过第一个31天之后又31天的POS收入(注意是这62天都不能动这笔币).",
-            "desc5": "会添加更多功能...",
-            "entry_coins": "币的数目",
-            "entry_days": "交易后经过天数",
-            "entry_difficulty": "POS难度值",
-            "prob_mint": "将在以下时间内产生POS块",
-            "prob_10m": "10 分钟",
-            "prob_24h": "24 小时",
-            "prob_31d": "31 天",
-            "prob_90d": "90 天",
-            "prob_1y": "1 年",
-            "prob_prob": "可能性",
-            "reward_block1": "第一个块",
-            "reward_block2": "第二个块 (+31)",
-            "reward_custom": "收益",
-            "reward_custom_total": "合计",
-            "reward_min": "最小收益 (31天)",
-            "reward_min_total": "最小合计 (31天)",
-            "footer_peer4commit": "捐赠这个项目",
-            "footer_peercointalk": "捐赠Peercointalk的项目",
-            "footer_github": "在GitHub上完善这个项目吧"
-        }
     };
 
     var getParam = function(param) {
