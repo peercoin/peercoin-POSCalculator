@@ -68,14 +68,17 @@
                     <tr>
                         <td><label id="entry_coins">Number Of Coins</label></td>
                         <td><input type="number" id="NumberOfCoinsStart" value="1000" onBlur="return is_int(this)"></td>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td><label id="entry_days">Age of transaction (days)</label></td>
                         <td><input type="number" id="AgeOfTransaction" value="31"></td>
+                        <td style="color:red;font-size:80%" id="AgeOfTransaction_error">Probability maxed at 90 days</td>
                     </tr>
                     <tr>
                         <td><label id="entry_difficulty">POS difficulty</label></td>
                         <td><input type="number" id="POSDifficulty" value="10"></td>
+                        <td>&nbsp;</td>
                     </tr>
                 </table>
                 <br>
@@ -182,6 +185,13 @@
                 var Days = document.getElementById('AgeOfTransaction').value;
                 var difficulty = document.getElementById('POSDifficulty').value;
 
+                if (Days > 90) {
+                    $('#AgeOfTransaction_error').show();
+                }
+                else {
+                    $('#AgeOfTransaction_error').hide();
+                }
+
                 // Minting probabilities
                 var probNextBlock = calculateProbNextBlock(Days, coinValue, difficulty);
                 var probBlockToday = calculateProbBlockToday(Days, coinValue, difficulty);
@@ -227,7 +237,7 @@
                 }
             };
 
-            translate_page("en");
+            translate_page();
 
             // Calculate the POS reward dynamically, without having to press a button
             var coinValueInput = document.querySelector('#NumberOfCoinsStart');
