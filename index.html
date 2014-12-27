@@ -107,6 +107,7 @@ section#noscript-padding { padding-bottom: 52px; }
         <p>Peercoin POS Calculator requires JavaScript. Please enable it in your browser and refresh.
     </section>
 </noscript>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="translations.js"></script>
 <script>
     var is_int = function(value) {
@@ -245,6 +246,21 @@ section#noscript-padding { padding-bottom: 52px; }
     
     // Because it runs dynamically, it should run at least once initially
     run();
+
+    // Dynamically pull the current POS difficulty using peerchain's api and YQL to bypass cross-origin-request restrictions.
+    $.ajax({
+        url: "http://query.yahooapis.com/v1/public/yql",
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {
+            q: "select * from json where url=\"http://peerchain.net/api/network/last\"",
+            format: "json"
+        },
+        success: function( response ) {
+            difficultyInput.value = response.query.results.json.pos_difficulty;
+            run();
+        }
+    });
 
 </script>
 
