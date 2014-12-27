@@ -209,17 +209,6 @@
                 document.getElementById('rewardBlockYear').innerHTML = toFixed(rewardBlockYear, 2) + ' PPC';
             };
 
-            var getParam = function(param) {
-                var queryString = location.search.substring(1);
-                var regexp = /([^&=]+)=([^&]*)/g;
-                var m;
-                var res = {};
-                while (m = regexp.exec(queryString)) {
-                    res[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-                }
-                return res[param];
-            };
-
             var translate_page = function(lang) {
                 var id;
                 var dict;
@@ -238,7 +227,7 @@
                 }
             };
 
-            translate_page(getParam("lang"));
+            translate_page("en");
 
             // Calculate the POS reward dynamically, without having to press a button
             var coinValueInput = document.querySelector('#NumberOfCoinsStart');
