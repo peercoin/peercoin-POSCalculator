@@ -43,14 +43,14 @@
                 </noscript>
                 <section id="languages">
                     <label id="header_prefix">Languages:</label>
-                    <a href="?lang=en">English</a>
-                    <a href="?lang=de">Deutsch</a>
-                    <a href="?lang=es">Español</a>
-                    <a href="?lang=fr">Français</a>
-                    <a href="?lang=nl">Nederlands</a>
-                    <a href="?lang=ru">русский</a>
-                    <a href="?lang=zh-cn">简体中文</a>
-                    <a href="?lang=cs">Česky</a>
+                    <a href="#" onclick="translate_page('en')">English</a>
+                    <a href="#" onclick="translate_page('de')">Deutsch</a>
+                    <a href="#" onclick="translate_page('es')">Español</a>
+                    <a href="#" onclick="translate_page('fr')">Français</a>
+                    <a href="#" onclick="translate_page('nl')">Nederlands</a>
+                    <a href="#" onclick="translate_page('ru')">русский</a>
+                    <a href="#" onclick="translate_page('zh-cn')">简体中文</a>
+                    <a href="#" onclick="translate_page('cs')">Česky</a>
                 </section>
                 <h1><label id="header_title">Peercoin Proof-Of-Stake (POS) Calculator v0.0.1</label></h1>
             </header>
@@ -220,7 +220,7 @@
                 return res[param];
             };
 
-            var translate = function(lang) {
+            var translate_page = function(lang) {
                 var id;
                 var dict;
                 if (lang === "undefined") {
@@ -238,7 +238,7 @@
                 }
             };
 
-            translate(getParam("lang"));
+            translate_page(getParam("lang"));
 
             // Calculate the POS reward dynamically, without having to press a button
             var coinValueInput = document.querySelector('#NumberOfCoinsStart');
