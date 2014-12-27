@@ -187,6 +187,7 @@
 
                 if (Days > 90) {
                     $('#AgeOfTransaction_error').show();
+                    Days = 90; //Stop the calculations from increasing past 90 days.
                 }
                 else {
                     $('#AgeOfTransaction_error').hide();
