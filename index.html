@@ -113,10 +113,10 @@ section#noscript-padding { padding-bottom: 52px; }
     };
 
     var toFixed = function(value, precision) {
-        var precision = (precision || 0);
+        precision = (precision || 0);
         var neg = (value < 0);
         var power = Math.pow(10, precision);
-        var value = Math.round(value * power);
+        value = Math.round(value * power);
         var integral = String((neg ? Math.ceil : Math.floor)(value / power));
         var fraction = String((neg ? -value : value) % power);
         var padding = new Array(Math.max(precision - fraction.length, 0) + 1).join('0');
