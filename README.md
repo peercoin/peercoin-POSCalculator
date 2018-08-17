@@ -3,7 +3,7 @@ Peercoin Proof-Of-Stake (POS) Calculator
 
 http://poscalculator.peercointalk.org/
 
-JavaScript-based Proof-Of-Stake (POS) reward calculator for Peercoin (PPC).
+JavaScript-based Proof-Of-Stake (POS) reward calculator for Peercoin (PPC), also known as PPCoin.
 
 Created by FuzzyBear of [Peercointalk](http://peercointalk.org/).
 
