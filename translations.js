@@ -2,13 +2,12 @@ var translations = {
     "en": {
         "title": "Peercoin POS Calculator",
         "header_prefix": "Languages: ",
-        "header_title": "Peercoin Proof-Of-Stake (POS) Calculator v0.0.1",
-        "intro": "Currently it is very early days... so only basic functions but you can:",
-        "desc1": "Enter the amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.",
-        "desc2": "The probability of minting a block reaches its maximum after 90 days and doesn't increase after that.",
-        "desc3": "The POS difficulty value can be obtained from the console window of ppcoin-qt, you can get it with the command: getdifficulty. Or, if you have ppcoind running, in a command prompt: ppcoind getdifficulty.",
-        "desc4": "More features to come...",
-        "entry_coins": "Number Of Coins",
+        "header_title": "Peercoin Proof-Of-Stake (POS) Calculator v1.0",
+        "intro": "This tool does only one thing but it does it well: calculate probability to generate a POS Peercoin block. You can adjust:",
+        "desc1": "The amount of coins you sent in a transaction, the number of days that have passed and the POS difficulty to get a readout.",
+        "desc2": "The probability of minting is null before 30 days and reaches its maximum after 90 days and doesn't increase after that.",
+        "desc3": "At laucnh, tool gets the last value for POS difficulty directly from the Peercoin blockchain.",
+        "entry_coins": "Number Of coins",
         "entry_days": "Age of transaction (days)",
         "entry_difficulty": "POS difficulty",
         "prob_mint": "Minting POS block within",
@@ -21,17 +20,17 @@ var translations = {
         "reward_block": "Reward",
         "footer_peer4commit": "Donate to the development of this project",
         "footer_peercointalk": "Donate to Peercointalk projects",
-        "footer_github": "Contribute to this project on GitHub"
+        "footer_github": "Contribute to this project on GitHub",
+        "noscript-text": "Peercoin POS Calculator requires Javascript to work. Please enable it (<a href='https://www.enable-javascript.com/'>Comment activer Javascript</a>) and refresh."
     },
     "de": {
         "title": "Peercoin POS Rechner",
         "header_prefix": "Sprachen: ",
-        "header_title": "Peercoin Nachweis-der-Beteiligung (POS) Rechner v0.0.1",
-        "intro": "Derzeit ist dieser Rechner noch im Entwicklungsstadium... also gibt es nur Grundfunktionen, aber Sie können:",
-        "desc1": "Die Menge der Münzen, die Sie in einer Transaktion gesendet haben, die Anzahl der Tage, die vergangen sind und die POS-Schwierigkeit eingeben, um eine Berechnung anzuzeigen.",
-        "desc2": "Die Wahrscheinlichkeit, dass ein Block geprägt wird erreicht ihr Maximum nach 90 Tagen und wird sich danach nicht erhöhen.",
-        "desc3": "Der POS Schwierigkeitswert in der Konsole von ppcoin-qt angezeigt werden, in dem Sie den Befehl eingeben: getdifficulty. Oder falls Sie ppcoind benutzen, geben Sie in der Kommandozeile ein: ppcoind getdifficulty.",
-        "desc4": "Mehr Funktionen in Kürze...",
+        "header_title": "Peercoin Nachweis-der-Beteiligung (POS) Rechner v1.0",
+        "intro": "Dieses Online-Tool macht nur eines, aber es macht es gut : die Warscheinlichkeit rechnen, einen Peercoin-POS-Block zu erzeugen. Sie können ändern.",
+        "desc1": "Der Betrag der Transaktion, die Anzahl der Tage, die seit der Transaktion vergangen sind und die POS-Schwierigkeit, Ergebnisse zu erzielen.",
+        "desc2": "Die Warscheinlichkeit, einen POS-Block zu erzeugen, ist vor 30 Tagen Null und erreicht ihr Maximum nach 90 Tagen. Die Warscheinlichkeit erhöht weiter nicht.",
+        "desc3": "Beim Start des Tools wird der letzte Wert für die POS-Schwierigkeit direkt aus der Peercoin-Blockchain abgerufen.",
         "entry_coins": "Anzahl der Münzen",
         "entry_days": "Alter der Transaktion (Tage)",
         "entry_difficulty": "POS Schwierigkeit",
@@ -45,7 +44,8 @@ var translations = {
         "reward_block": "Belohnung",
         "footer_peer4commit": "Spenden für die Entwicklung des Projekts",
         "footer_peercointalk": "Spenden für Peercointalk Projekte",
-        "footer_github": "Zu diesem Projekt auf GitHub beitragen"
+        "footer_github": "Zu diesem Projekt auf GitHub beitragen",
+        "noscript-text": "Der Peercoin-POS-Rechner braucht JavaScript, um zu funktionieren. Bitte aktivieren Sie JavaScript (<a href='https://www.enable-javascript.com/de/'>Wie JavaScript aktivieren</a>) und dann aktualisieren Sie."
     },
     "es": {
         "title": "Peercoin POS Calculadora",
@@ -69,17 +69,17 @@ var translations = {
         "reward_block": "Recompensa",
         "footer_peer4commit": "Donar al desarrollo de este proyecto",
         "footer_peercointalk": "Donar a proyectos Peercointalk",
-        "footer_github": "Contribuir a este proyecto en GitHub"
+        "footer_github": "Contribuir a este proyecto en GitHub",
+        "noscript-text": ""
     },
     "fr": {
         "title": "Peercoin Calculateur POS",
         "header_prefix": "Langues: ",
-        "header_title": "Calculateur Preuve-de-Part (POS) Peercoin v0.0.1",
-        "intro": "N'en est qu'à ses débuts... seulement des fonctions basiques, mais vous pouvez&nbsp;:",
-        "desc1": "Entrer le montant reçu dans une transaction, le nombre de jours écoulés depuis et la difficulté POS pour avoir un résultat.",
-        "desc2": "La probabilité de générer un bloc POS atteint son maximum après 90 jours et n'augmente plus après ça.",
-        "desc3": "La difficulté POS peut être obtenue avec la console de la fenêtre de débogage de ppcoin-qt, en entrant la commande: getdifficulty. Ou alors, si vous avez ppcoind en cours de fonctionnement, avec une ligne de commande: ppcoind getdifficulty.",
-        "desc4": "D'autres fonctionnalités à venir...",
+        "header_title": "Calculateur Preuve-de-Part (POS) Peercoin v1.0",
+        "intro": "Cet outil en ligne ne fait qu'une chose mais il le fait bien : calculer la probabilité de générer un bloc POS Peercoin. Vous pouvez modifier :",
+        "desc1": "Le montant de la transaction, le nombre de jours écoulés depuis et la difficulté POS pour avoir un résultat.",
+        "desc2": "La probabilité de générer un bloc POS est nulle avant 30 jours et atteint son maximum après 90 jours. La probabilité n'augmente plus au-delà.",
+        "desc3": "Au lancement de l'outil, la dernière valeur pour la difficulté POS est récupérée directement depuis la blockchain Peercoin.",
         "entry_coins": "Nombre de pièces",
         "entry_days": "Âge de la transaction (jours)",
         "entry_difficulty": "Difficulté POS",
@@ -91,9 +91,10 @@ var translations = {
         "prob_1y": "1 an",
         "prob_prob": "Probabilité",
         "reward_block": "Récompense",
-        "footer_peer4commit": "Donner pour développer ce projet",
-        "footer_peercointalk": "Donner aux projets Peercointalk",
-        "footer_github": "Contribuer à ce projet sur GitHub"
+        "footer_peer4commit": "Faire un don pour développer ce projet",
+        "footer_peercointalk": "Faire un don aux projets Peercointalk",
+        "footer_github": "Contribuer à ce projet sur GitHub",
+        "noscript-text": "Le calculateur POS Peercoin a besoin de Javascript pour fonctionner. Merci d'activer Javascript (<a href='https://www.enable-javascript.com/fr/'>Comment activer Javascript</a>) et rafraichissez."
     },
     "nl": {
         "title": "Peercoin POS Calculator",
