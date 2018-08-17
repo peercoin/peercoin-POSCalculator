@@ -7,7 +7,7 @@ JavaScript-based Proof-Of-Stake (POS) reward calculator for Peercoin (PPC), also
 
 Created by FuzzyBear of [Peercointalk](http://peercointalk.org/).
 
-This is still in the development and testing phase.
+After 4 years of testing, tool is now in version 1.
 
 ## Helping Out
 
@@ -30,6 +30,16 @@ Each commit that gets pulled into the project's git repo will receive a tip via 
 The current reward for the next tip is shown above. You will receive that amount of peercoins for each commit you contribute to the project.
 
 ## Changelog
+
+### v1.0
+
+* POS difficulty is retrieved directly from the [Peercoin explorer](https://explorer.peercoin.net/)
+* Recast of the explanation texts
+* Translation of no-javascript text and link to how-to enable javascript guide added
+* Minor code improvements
+    * Useless code deleted
+    * Favicon updated
+    * Dependencies updated
 
 ### v0.0.1
 
